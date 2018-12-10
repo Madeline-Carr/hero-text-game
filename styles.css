@@ -1,0 +1,35 @@
+body{
+    padding:0px;
+    background-color: black;
+    color: aliceblue;
+    font-family: fantasy;
+    font-size: 20px;
+}
+
+/*Game Container*/
+#game{
+    padding-top: 50px;
+    width: 70%;
+    margin: 0 auto;
+}
+
+/*Buttons*/
+#buttons{
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+}
+button{
+    color: #111;
+    background-color: aliceblue;
+    border-radius: 20px;
+    height: 3em;
+    width: 30%;
+    margin: 0 auto;
+    font-size: 14px;
+}
+button:hover{
+    background: #111;
+    color: aliceblue;
+}
+

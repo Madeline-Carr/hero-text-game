@@ -4,46 +4,46 @@ let textField = document.getElementById("Main");
 
 //Nodes
 let para = document.createElement("P");
-let button = document.createElement("Button");
+let div = document.createElement("Div");
 
 // Your character 
 let yourCharacter = {
-    name: "Madeline",
+    name: "John",
     xp: 0,
     winPhrase: "I won!!!",
     health: 50,
-    attack: 10,
+    attackPoints: 10,
     defense: 5,
     specialMoveName: "Blast!",
     specialMove: function () {
         let special = true;
-        this.attack = this.attack + 10;
+        this.attackPoints = this.attackPoints + 10;
     },
     attack: function (monster) {
         document.getElementById("buttons").style.display = "none";
-        if (yourCharacter.attack > monster.defense) {
-            monster.health = monster.health - (yourCharacter.attack - monster.defense);
-            yourCharacter.attack++;
+        if (yourCharacter.attackPoints > monster.defense) {
+            monster.health = monster.health - (yourCharacter.attackPoints - monster.defense);
+            yourCharacter.attackPoints++;
             monster.defense--;
             yourCharacter.xp++;
 
             let say = document.createTextNode("WHAM!!! You got a hit!");
             para.appendChild(say);
             document.getElementById("game").appendChild(para);
-            pickLocation(oldBuckingham);
+            gameOptions.pickLocation(oldBuckingham, otterDale);
         }
         else {
-            yourCharacter.health = yourCharacter.health - (monster.attack - yourCharacter.defense);
+            yourCharacter.health = yourCharacter.health - (monster.attackPoints - yourCharacter.defense);
             yourCharacter.defense--;
-            monster.attack++;
+            monster.attackPoints++;
             textField.innerHTML = "WHAM!!! You got hit!";
-            pickLocation(oldBuckingham);
+            gameOptions.pickLocation(oldBuckingham, otterDale);
         }
         special = false;
     },
     defend: function (monster) {
         document.getElementById("buttons").style.visibility = "hidden";
-        yourCharacter.defense > monster.attack ? textField.innerHTML = "You Win!" : textField.innerHTML = "You Lose!";
+        yourCharacter.defense > monster.attackPoints ? textField.innerHTML = "You Win!" : textField.innerHTML = "You Lose!";
         special = false;
     },
 };
@@ -53,10 +53,10 @@ let yourCharacter = {
 Monsters 
 *********************** 
 */
-function MakeMonster(name, health, attack, defense) {
+function MakeMonster(name, health, attackPoints, defense) {
     this.name = name;
     this.health = health;
-    this.attack = attack;
+    this.attackPoints = attackPoints;
     this.defense = defense;
 };
 
@@ -89,23 +89,48 @@ let otterDale = new MakeLocation("Otterdale", "hot", "Has anyone seen the mayor?
 let padstow = new MakeLocation("Padstow", "rainy", "I don't know what to say!");
 let bellmare = new MakeLocation("Bellmare", "foggy", "We have 500 cows here!");
 let deathfall = new MakeLocation("Deathfall", "very, hot", "Everything is lava so good luck!");
-
+console.log(otterDale);
 /*
 *********************** 
-Functions 
+Game Options 
 *********************** 
 */
+let gameOptions = {
+    level: 1,
+    whatName: function () {
+        yourCharacter.name = prompt("What is your name?");
+        console.log(yourCharacter);
+    },
 
-function pickLocation(location) {
-    //Asks where you want to go.
-    let say = document.createTextNode("Where do you want to go?");
-    para.appendChild(say);
-    document.getElementById("game").appendChild(para);
+    pickLocation: function (location, locationTwo) {
+        //Asks where you want to go.
+        let say = document.createTextNode("Where do you want to go?");
+        para.appendChild(say);
+        document.getElementById("game").appendChild(para);
 
-    //Makes a button with an option. 
-    let placeOne = document.createTextNode(location.name);
-    button.appendChild(placeOne);
-    document.getElementById("game").appendChild(button);
+        //Make a div to hold buttons.
+        document.getElementById("game").appendChild(div);
+        div.id = "newdiv";
 
-}
+        //Makes a button with an option1. 
+        let button = document.createElement("Button");
+        let placeOne = document.createTextNode(location.name);
+        button.appendChild(placeOne);
+        document.getElementById("newdiv").appendChild(button);
+        //This does work
+        button.onclick = function () {
+            console.log("Testing");
+        };
 
+        //Makes a button with an option2. 
+        console.log(otterDale):
+        let buttonTwo = document.createElement("Button");
+        let placeTwo = document.createTextNode(locationTwo.name);
+        buttonTwo.appendChild(placeTwo);
+        document.getElementById("newdiv").appendChild(buttonTwo);
+        buttonTwo.onclick = locationTwo.arrival;
+    }
+};
+
+//This will be moved but it is here for now. 
+gameOptions.whatName();

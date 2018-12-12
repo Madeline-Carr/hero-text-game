@@ -32,7 +32,14 @@ button:hover{
     background: #111;
     color: aliceblue;
 }
+button:focus {
+    background-color: #555;
+    outline:0;
+}
 
 #red{
     color: red;
+}
+#newdiv{
+    display: flex;
 }

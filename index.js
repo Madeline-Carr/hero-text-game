@@ -5,7 +5,12 @@ let textField = document.getElementById("Main");
 //Nodes
 let para = document.createElement("P");
 let div = document.createElement("Div");
-
+/*
+let makeBreak = function () {
+    let linebreak = document.createElement("br");
+    document.getElementById("game").appendChild(linebreak);
+};
+*/
 // Your character 
 let yourCharacter = {
     name: "John",
@@ -83,6 +88,7 @@ function MakeLocation(name, weather, info) {
         let pickLocationText = document.createTextNode("Hello! Welcome to " + self.name + " it is very " + self.weather + " here, I hope you don't mind! " + self.info);
         para.appendChild(pickLocationText);
         document.getElementById("game").appendChild(para);
+
     }
 }
 
@@ -118,19 +124,17 @@ let gameOptions = {
         let button = document.createElement("Button");
         let placeOne = document.createTextNode(location.name);
         button.appendChild(placeOne);
+        button.id = "one";
         document.getElementById("newdiv").appendChild(button);
-
-
-
-
-        button.onclick = oldBuckingham.arrival;
+        document.getElementById("one").addEventListener("click", oldBuckingham.arrival);
 
         //Makes a button with an option2. 
         let buttonTwo = document.createElement("Button");
         let placeTwo = document.createTextNode(locationTwo.name);
         buttonTwo.appendChild(placeTwo);
+        buttonTwo.id = "two";
         document.getElementById("newdiv").appendChild(buttonTwo);
-        buttonTwo.onclick = otterDale.arrival;
+        document.getElementById("two").addEventListener("click", otterDale.arrival);
     }
 };
 

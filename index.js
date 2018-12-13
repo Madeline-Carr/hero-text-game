@@ -78,8 +78,11 @@ function MakeLocation(name, weather, info) {
     this.name = name;
     this.weather = weather;
     this.info = info;
+    var self = this;
     this.arrival = function () {
-        console.log("Hello! Welcome to " + this.name + " it is very " + this.weather + " here, I hope you don't mind! " + this.info);
+        let pickLocationText = document.createTextNode("Hello! Welcome to " + self.name + " it is very " + self.weather + " here, I hope you don't mind! " + self.info);
+        para.appendChild(pickLocationText);
+        document.getElementById("game").appendChild(para);
     }
 }
 
@@ -89,7 +92,6 @@ let otterDale = new MakeLocation("Otterdale", "hot", "Has anyone seen the mayor?
 let padstow = new MakeLocation("Padstow", "rainy", "I don't know what to say!");
 let bellmare = new MakeLocation("Bellmare", "foggy", "We have 500 cows here!");
 let deathfall = new MakeLocation("Deathfall", "very, hot", "Everything is lava so good luck!");
-console.log(otterDale);
 /*
 *********************** 
 Game Options 
@@ -117,18 +119,18 @@ let gameOptions = {
         let placeOne = document.createTextNode(location.name);
         button.appendChild(placeOne);
         document.getElementById("newdiv").appendChild(button);
-        //This does work
-        button.onclick = function () {
-            console.log("Testing");
-        };
+
+
+
+
+        button.onclick = oldBuckingham.arrival;
 
         //Makes a button with an option2. 
-        console.log(otterDale):
         let buttonTwo = document.createElement("Button");
         let placeTwo = document.createTextNode(locationTwo.name);
         buttonTwo.appendChild(placeTwo);
         document.getElementById("newdiv").appendChild(buttonTwo);
-        buttonTwo.onclick = locationTwo.arrival;
+        buttonTwo.onclick = otterDale.arrival;
     }
 };
 

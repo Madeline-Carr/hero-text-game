@@ -11,6 +11,12 @@ let makeBreak = function () {
     document.getElementById("game").appendChild(linebreak);
 };
 */
+document.getElementById('attack').addEventListener('click', function () {
+    yourCharacter.attack(vampire);
+});
+document.getElementById('defend').addEventListener('click', function () {
+    yourCharacter.defend(vampire);
+});
 // Your character 
 let yourCharacter = {
     name: "John",
@@ -106,6 +112,12 @@ Game Options
 let gameOptions = {
     level: 1,
     whatName: function () {
+        /* THIS WILL ASK THE NAME BUT NOT MAKE A TEXT BOX FOR AN ANSWER
+        let question = document.createElement("P");
+        let whatYourName = document.createTextNode("What is your Name?");
+        question.appendChild(whatYourName);
+        document.getElementById("game").appendChild(question);
+         */
         yourCharacter.name = prompt("What is your name?");
         console.log(yourCharacter);
     },
